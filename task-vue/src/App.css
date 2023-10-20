@@ -1,4 +1,24 @@
 /* TaskForm/styles.css */
+.App {
+  text-align: center;
+}
+.mainContainer {
+  display: flex;
+  justify-content: space-between; 
+  flex-wrap: wrap;
+}
+
+.formContainer,
+.listContainer {
+  flex: 1;
+  margin: 10px;
+  min-width: 300px; 
+}
+
+.listContainer ul {
+  padding: 0;
+  list-style-type: none;
+}
 
 .form-container {
   background: #f4f4f4;

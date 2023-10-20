@@ -10,27 +10,30 @@ function App() {
 
     const [tasks, setTasks] = useState([]);
 
+    const fetchData = async () => {
+      try {
+        const response = await api.url('/tasks').get().json();
+        setTasks(response);
+      } catch (error) {
+        console.error('There was an error fetching the data:', error);
+      }
+    };
+  
     useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const response = await api.url('/tasks')
-                  .get()
-                  .json();
-  
-              setTasks(response);
-          } catch (error) {
-              console.error('There was an error fetching the data:', error);
-          }
-      };
-  
       fetchData();
-  }, []);
+    }, []);
 
   return (
       <div className="App">
         <h1>Task Manager</h1>
-        <TaskForm />
-        <TaskList tasks={tasks} />
+        <div className="mainContainer">
+          <div className="formContainer">
+            <TaskForm onTaskAdded={fetchData}/>
+          </div>
+          <div className='listContainer'>
+            <TaskList tasks={tasks} onUpdateTask={fetchData}/>
+          </div>
+        </div>
       </div>
   );
 }
