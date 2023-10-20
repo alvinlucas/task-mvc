@@ -22,9 +22,13 @@ function TaskForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    const response =  await api.url('/tasks')
-          .post(task)
-        .json();
+        const response =  await api.url('/tasks')
+            .post(task)
+            .json();
+        
+        if(!response) {
+            alert("Erreur lors de l'envoi des données");
+        }
     };
 
     return (

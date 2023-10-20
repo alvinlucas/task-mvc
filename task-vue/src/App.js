@@ -10,11 +10,21 @@ function App() {
 
     const [tasks, setTasks] = useState([]);
 
-    useEffect(async () => {
-     const response = await api.url('/tasks').get()
-            .json();
-        setTasks(response);
-    }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+              const response = await api.url('/tasks')
+                  .get()
+                  .json();
+  
+              setTasks(response);
+          } catch (error) {
+              console.error('There was an error fetching the data:', error);
+          }
+      };
+  
+      fetchData();
+  }, []);
 
   return (
       <div className="App">

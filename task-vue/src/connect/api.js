@@ -1,5 +1,6 @@
 import wretch from 'wretch';
 
-const api = wretch(import.meta.env.VITE_API_URL);
+const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const api = wretch(apiURL);
 
 export default api;
